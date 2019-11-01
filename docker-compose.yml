@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:9.6-alpine
+    environment:
+      POSTGRES_DB: dev
+      POSTGRES_USER: postgres-dev
+      POSTGRES_PASSWORD: s3cr3tp4ssw0rd
+    ports:
+      - "5432:5432"
+  adminer:
+    image: adminer
+    container_name: adminer
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 2000:8080
