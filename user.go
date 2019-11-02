@@ -7,6 +7,7 @@ import (
 
 	"net/http"
 	"encoding/json"
+//	"github.com/gin-gonic/gin"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
     _"github.com/jinzhu/gorm/dialects/postgres"
@@ -74,8 +75,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request){
 	defer db.Close()
 
 	vars := mux.Vars(r)
-	uuid := vars["uuid"]	
-	fmt.Fprintf(w, "Successfully updated")
+	uuid := vars["uuid"]
 
 	firstName := vars["firstName"]
 	lastName := vars["lastName"]
@@ -93,6 +93,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request){
 	user.Password = password
 
 	db.Save(&user)	
+	fmt.Fprintf(w, "Successfully updated")
 
 
 
